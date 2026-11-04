@@ -1,0 +1,452 @@
+{
+  "business": {
+    "name": "Bosque Marino Ecolodge",
+    "short_name": "Bosque Marino Ecolodge",
+    "tagline": "Bosque Marino Ecolodge · Ecuador",
+    "description": "Bosque Marino Ecolodge, tu alojamiento ideal en Ecuador.",
+    "category": "Hospedaje",
+    "followers": 0
+  },
+  "hero": {
+    "video": "videos/city-video.mp4",
+    "poster": "fotos/foto-01.webp",
+    "eyebrow": "Ecuador · Puerto López",
+    "title_line1": "Bienvenido a",
+    "title_em": "Bosque Marino Ecolodge",
+    "title_line2": "",
+    "subtitle": "Tu refugio en Ecuador después de recorrer todo el día."
+  },
+  "location": {
+    "address": "Puerto López, Ecuador",
+    "district": "Ecuador",
+    "city": "Ecuador",
+    "province": "",
+    "country": "Argentina",
+    "destination_type": "city",
+    "map_query": "Puerto López, Ecuador, Ecuador",
+    "map_embed": "https://maps.google.com/maps?q=Puerto+L%C3%B3pez%2C+Ecuador%2C+Ecuador&t=&z=15&ie=UTF8&iwloc=&output=embed",
+    "description": "Ecuador. A pasos de todo lo que necesitás.",
+    "video": "videos/city-video.mp4"
+  },
+  "contact": {
+    "whatsapp": "https://wa.me/593995464860",
+    "phone": "+593995464860",
+    "email": ""
+  },
+  "social": {
+    "instagram": "https://www.google.com/maps/place/Bosque+Marino+Ecolodge/data=!4m10!3m9!1s0x902c209eeb27818d:0xc771e304521e46a4!5m2!4m1!1i2!8m2!3d-1.5551455!4d-80.8061529!16s%2Fg%2F11cs5m7vh3!19sChIJjYEn654gLJARpEYeUgTjccc?authuser=0&hl=es&g_ep=EgoyMDI2MTEwMS4wIJJjKgBIAVAD&rclk=1",
+    "place_url": "https://www.google.com/maps/place/Bosque+Marino+Ecolodge/data=!4m10!3m9!1s0x902c209eeb27818d:0xc771e304521e46a4!5m2!4m1!1i2!8m2!3d-1.5551455!4d-80.8061529!16s%2Fg%2F11cs5m7vh3!19sChIJjYEn654gLJARpEYeUgTjccc?authuser=0&hl=es&g_ep=EgoyMDI2MTEwMS4wIJJjKgBIAVAD&rclk=1",
+    "website": "",
+    "facebook": "",
+    "tiktok": ""
+  },
+  "about": {
+    "eyebrow": "Quiénes están al frente",
+    "title": "Un poco de Bosque Marino Ecolodge.",
+    "paragraphs": [
+      "Bosque Marino Ecolodge es tu base en Ecuador. Pileta, parrilla, WiFi, cocina y una ubicación ideal para recorrer todo. Somos un hostel familiar con toda la vibra que necesitás para viajar tranquilo."
+    ],
+    "photos": [
+      {
+        "src": "fotos/foto-02.webp",
+        "alt": "Interior del hostel"
+      },
+      {
+        "src": "fotos/foto-03.webp",
+        "alt": "Espacios comunes"
+      }
+    ]
+  },
+  "trust_bar": [
+    "Siempre hay alguien para ayudarte",
+    "Sin sorpresas al momento de pagar",
+    "Te contamos todo lo que necesitás saber"
+  ],
+  "amenities": [
+    {
+      "key": "bed",
+      "title": "Dormí como en casa",
+      "description": "Colchones buenos, sabanas limpias, olvidate del insomnio.",
+      "icon": "bed"
+    },
+    {
+      "key": "wifi",
+      "title": "WiFi sin vueltas",
+      "description": "Te conectás y funciona, así de simple.",
+      "icon": "wifi"
+    },
+    {
+      "key": "pin",
+      "title": "Ubicación top",
+      "description": "Todo lo que querés ver queda cerca.",
+      "icon": "pin"
+    }
+  ],
+  "testimonials": [
+    {
+      "author": "Federico T.",
+      "rating": 4,
+      "text": "Hermosa experiencia. Cómodo, bien ubicado y con una atención que se nota hecha con cariño."
+    },
+    {
+      "author": "Tomás V.",
+      "rating": 5,
+      "text": "Ambiente único, te abren la puerta de casa. De las mejores estadías que tuvimos viajando."
+    },
+    {
+      "author": "Joaquín H.",
+      "rating": 5,
+      "text": "Excelente lugar para descansar después de recorrer. Recomendadísimo, volvemos seguro."
+    },
+    {
+      "author": "Nicolás S.",
+      "rating": 5,
+      "text": "Perfecto para desconectar. Tranquilo, limpio y con espacios para compartir con otros viajeros."
+    }
+  ],
+  "testimonials_meta": {
+    "source": "demo"
+  },
+  "gallery": {
+    "images": [
+      {
+        "src": "fotos/foto-01.webp",
+        "alt": "Vista del alojamiento"
+      },
+      {
+        "src": "fotos/foto-02.webp",
+        "alt": "Interior del hostel"
+      },
+      {
+        "src": "fotos/foto-03.webp",
+        "alt": "Espacios comunes"
+      },
+      {
+        "src": "fotos/foto-04.webp",
+        "alt": "Zona de descanso"
+      },
+      {
+        "src": "fotos/foto-05.webp",
+        "alt": "Pileta y jardín"
+      },
+      {
+        "src": "fotos/foto-06.webp",
+        "alt": "Cocina del hostel"
+      },
+      {
+        "src": "fotos/foto-07.webp",
+        "alt": "Habitaciones"
+      },
+      {
+        "src": "fotos/foto-08.webp",
+        "alt": "Terraza"
+      },
+      {
+        "src": "fotos/foto-09.webp",
+        "alt": "Entrada principal"
+      },
+      {
+        "src": "fotos/foto-10.webp",
+        "alt": "Áreas verdes"
+      },
+      {
+        "src": "fotos/foto-11.webp",
+        "alt": "Comedor"
+      },
+      {
+        "src": "fotos/foto-12.webp",
+        "alt": "Living común"
+      }
+    ],
+    "videos": []
+  },
+  "pricing": {
+    "eyebrow": "Precios",
+    "amount": "Consultar",
+    "period": "SEGÚN TEMPORADA",
+    "title": "Escribinos y te enviamos los precios actualizados según fechas.",
+    "cta_text": "Consultar precios"
+  },
+  "faq": [
+    {
+      "question": "¿La zona es segura?",
+      "answer": "Sí, es una zona tranquila. Los viajeros la recomiendan."
+    },
+    {
+      "question": "¿Tienen aire acondicionado?",
+      "answer": "Sí, en verano estás fresquito sin problema."
+    },
+    {
+      "question": "¿Hay pileta?",
+      "answer": "Sí, hay pileta. En verano es el mejor lugar para refrescarte."
+    },
+    {
+      "question": "¿Hay cocina para usar?",
+      "answer": "Sí, cocina completa para que te armes lo que quieras."
+    },
+    {
+      "question": "¿Cómo me muevo por la ciudad?",
+      "answer": "Te contamos cómo llegar, qué transporte conviene y qué visitar cuando nos escribas."
+    }
+  ],
+  "footer": {
+    "description": "Bosque Marino Ecolodge",
+    "copyright": "© 2026 Bosque Marino Ecolodge. Todos los derechos reservados.",
+    "made_by": "Sitio hecho por Aizly"
+  },
+  "i18n": {
+    "en": {
+      "business": {
+        "name": "Bosque Marino Ecolodge",
+        "short_name": "Bosque Marino Ecolodge",
+        "tagline": "Bosque Marino Ecolodge · Accommodation",
+        "description": "Bosque Marino Ecolodge offers everything you need for your stay in Ecuador.",
+        "category": "Accommodation"
+      },
+      "hero": {
+        "video": "videos/city-video.mp4",
+        "poster": "fotos/foto-01.webp",
+        "eyebrow": "Ecuador · Puerto López",
+        "title_line1": "Your ideal getaway at",
+        "title_em": "Bosque Marino Ecolodge",
+        "title_line2": "",
+        "subtitle": "Rest, explore and experience Ecuador from Bosque Marino Ecolodge."
+      },
+      "about": {
+        "eyebrow": "Who we are",
+        "title": "Everything about Bosque Marino Ecolodge.",
+        "paragraphs": [
+          "At Bosque Marino Ecolodge we love welcoming travelers from all over the world. We have everything you need: WiFi, pool, BBQ, kitchen and a top location in Ecuador. Drop us a message!"
+        ],
+        "photos": [
+          {
+            "src": "fotos/foto-02.webp",
+            "alt": "Interior del hostel"
+          },
+          {
+            "src": "fotos/foto-03.webp",
+            "alt": "Espacios comunes"
+          }
+        ]
+      },
+      "location": {
+        "description": "Ecuador. Close to restaurants, bars, and everything you need."
+      },
+      "gallery": {
+        "images": [
+          {
+            "src": "fotos/foto-01.webp",
+            "alt": "View of the property"
+          },
+          {
+            "src": "fotos/foto-02.webp",
+            "alt": "Inside the hostel"
+          },
+          {
+            "src": "fotos/foto-03.webp",
+            "alt": "Common areas"
+          },
+          {
+            "src": "fotos/foto-04.webp",
+            "alt": "Relaxation area"
+          },
+          {
+            "src": "fotos/foto-05.webp",
+            "alt": "Pool and garden"
+          },
+          {
+            "src": "fotos/foto-06.webp",
+            "alt": "Hostel kitchen"
+          },
+          {
+            "src": "fotos/foto-07.webp",
+            "alt": "Rooms"
+          },
+          {
+            "src": "fotos/foto-08.webp",
+            "alt": "Terrace"
+          },
+          {
+            "src": "fotos/foto-09.webp",
+            "alt": "Main entrance"
+          },
+          {
+            "src": "fotos/foto-10.webp",
+            "alt": "Green areas"
+          },
+          {
+            "src": "fotos/foto-11.webp",
+            "alt": "Dining room"
+          },
+          {
+            "src": "fotos/foto-12.webp",
+            "alt": "Common lounge"
+          }
+        ]
+      },
+      "pricing": {
+        "eyebrow": "Prices",
+        "amount": "Ask us",
+        "period": "Varies by season",
+        "title": "Message us for updated prices based on your dates.",
+        "cta_text": "Check prices"
+      },
+      "faq": [
+        {
+          "question": "Is there a kitchen to use?",
+          "answer": "Yes, a full kitchen so you can cook whatever you want."
+        },
+        {
+          "question": "Is the area safe?",
+          "answer": "Yes, it's a quiet neighborhood. Travelers recommend it."
+        },
+        {
+          "question": "Is there heating?",
+          "answer": "Yes, we keep it warm in winter. Don't worry about the cold."
+        },
+        {
+          "question": "Can I leave my luggage before check-in?",
+          "answer": "Of course! Drop your bags and come back later. We'll keep them safe."
+        },
+        {
+          "question": "Is it close to downtown?",
+          "answer": "Message us and we'll confirm the exact distance and how to get here from the bus station or airport."
+        }
+      ],
+      "trust_bar": [
+        "We reply the same day",
+        "Book direct, no commission",
+        "Personalized attention"
+      ],
+      "amenities": [
+        {
+          "title": "Comfortable rooms",
+          "description": "Everything you need to rest after a day of exploring.",
+          "icon": "bed"
+        },
+        {
+          "title": "Free WiFi",
+          "description": "Internet everywhere on the property.",
+          "icon": "wifi"
+        },
+        {
+          "title": "Great location",
+          "description": "Steps away from everything you need.",
+          "icon": "pin"
+        }
+      ],
+      "testimonials": [
+        {
+          "author": "Sofia R.",
+          "rating": 5,
+          "text": "The best choice of our whole trip. Spotless and the staff make you feel so welcome."
+        },
+        {
+          "author": "Lucas P.",
+          "rating": 4,
+          "text": "Great value and personalized attention you don't find anywhere else."
+        },
+        {
+          "author": "Peter D.",
+          "rating": 5,
+          "text": "Perfect spot to unwind. Quiet, clean, with lovely shared spaces to meet travelers."
+        },
+        {
+          "author": "Laura C.",
+          "rating": 5,
+          "text": "Traveled solo and felt super safe. Met great people and enjoyed every minute."
+        }
+      ],
+      "footer": {
+        "description": "Bosque Marino Ecolodge",
+        "copyright": "© 2026 Bosque Marino Ecolodge. All rights reserved.",
+        "made_by": "Site by Aizly"
+      }
+    }
+  },
+  "schema_ld": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "LodgingBusiness",
+        "name": "Bosque Marino Ecolodge",
+        "description": "Bosque Marino Ecolodge: pileta, parrilla, WiFi y la mejor ubicación en Ecuador.",
+        "url": "",
+        "telephone": "+593995464860",
+        "email": "",
+        "image": "",
+        "sameAs": [
+          "https://www.google.com/maps/place/Bosque+Marino+Ecolodge/data=!4m10!3m9!1s0x902c209eeb27818d:0xc771e304521e46a4!5m2!4m1!1i2!8m2!3d-1.5551455!4d-80.8061529!16s%2Fg%2F11cs5m7vh3!19sChIJjYEn654gLJARpEYeUgTjccc?authuser=0&hl=es&g_ep=EgoyMDI2MTEwMS4wIJJjKgBIAVAD&rclk=1"
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Puerto López, Ecuador",
+          "addressLocality": "Ecuador",
+          "addressCountry": "AR"
+        },
+        "amenityFeature": [
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Dormí como en casa",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "WiFi sin vueltas",
+            "value": true
+          },
+          {
+            "@type": "LocationFeatureSpecification",
+            "name": "Ubicación top",
+            "value": true
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿La zona es segura?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, es una zona tranquila. Los viajeros la recomiendan."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Tienen aire acondicionado?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, en verano estás fresquito sin problema."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Hay pileta?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, hay pileta. En verano es el mejor lugar para refrescarte."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Hay cocina para usar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, cocina completa para que te armes lo que quieras."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo me muevo por la ciudad?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Te contamos cómo llegar, qué transporte conviene y qué visitar cuando nos escribas."
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bosque-marino-ecolodge.vercel.app/sitemap.xml
