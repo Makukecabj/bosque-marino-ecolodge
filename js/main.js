@@ -83,7 +83,49 @@ const I18N = {
         bk_error_order: "La fecha de salida tiene que ser posterior a la de llegada.",
         bk_error_past: "La fecha de llegada no puede ser anterior a hoy.",
         bk_selected: "Estás reservando",
-        bk_clear: "Quitar habitación",
+                bk_clear: "Quitar habitación",
+        md_title: "Reserva directa",
+        md_step_data: "1. Datos",
+        md_step_payment: "2. Pago",
+        md_step_success: "3. Éxito",
+        md_open: "Iniciar reserva",
+        md_next: "Continuar al pago",
+        md_back: "Atrás",
+        md_pay: "Pagar (demo)",
+        md_close: "Cerrar",
+        md_first: "Nombre",
+        md_last: "Apellido",
+        md_email: "Correo electrónico",
+        md_country: "País",
+        md_phone: "Teléfono",
+        md_doctype: "Documento",
+        md_docnum: "Número de documento",
+        md_cedula: "Cédula (Ecuador)",
+        md_passport: "Pasaporte",
+        md_checkin: "Llegada",
+        md_checkout: "Salida",
+        md_guests: "Huéspedes",
+        md_cardnum: "Número de tarjeta",
+        md_expiry: "Expiración (MM/AA)",
+        md_cvv: "CVV",
+        md_cardholder: "Titular de la tarjeta",
+        md_demo_note: "Modo demo: no se realizan cobros reales ni se almacenan tarjetas.",
+        md_brands: "Métodos de pago aceptados",
+        md_success_title: "Reserva confirmada (demo)",
+        md_success_ref: "Referencia",
+        md_success_note: "Se enviará una confirmación simulada por correo y WhatsApp con los datos de la reserva.",
+        md_success_wa: "Enviar por WhatsApp",
+        md_success_email: "Enviar por correo",
+        md_err_required: "Completá todos los campos obligatorios.",
+        md_err_email: "Ingresá un correo válido.",
+        md_err_phone: "Ingresá un teléfono válido.",
+        md_err_cedula: "La cédula ecuatoriana debe tener 10 dígitos.",
+        md_err_passport: "El pasaporte debe tener entre 6 y 9 caracteres.",
+        md_err_dates: "Revisá las fechas de tu reserva.",
+        md_err_cardnum: "Número de tarjeta inválido.",
+        md_err_expiry: "Fecha de expiración inválida o vencida.",
+        md_err_cvv: "CVV inválido.",
+        md_processing: "Procesando pago...",
         bk_room_undefined: "a definir",
         steps_eyebrow: "Cómo reservar",
         steps_title: "Tres pasos y estás adentro",
@@ -164,7 +206,49 @@ const I18N = {
         bk_error_order: "Check-out must be after check-in.",
         bk_error_past: "Check-in can't be before today.",
         bk_selected: "You're booking",
-        bk_clear: "Remove room",
+                bk_clear: "Remove room",
+        md_title: "Direct booking",
+        md_step_data: "1. Details",
+        md_step_payment: "2. Payment",
+        md_step_success: "3. Success",
+        md_open: "Start booking",
+        md_next: "Continue to payment",
+        md_back: "Back",
+        md_pay: "Pay (demo)",
+        md_close: "Close",
+        md_first: "First name",
+        md_last: "Last name",
+        md_email: "Email",
+        md_country: "Country",
+        md_phone: "Phone",
+        md_doctype: "Document",
+        md_docnum: "Document number",
+        md_cedula: "ID card (Ecuador)",
+        md_passport: "Passport",
+        md_checkin: "Check-in",
+        md_checkout: "Check-out",
+        md_guests: "Guests",
+        md_cardnum: "Card number",
+        md_expiry: "Expiry (MM/AA)",
+        md_cvv: "CVV",
+        md_cardholder: "Cardholder name",
+        md_demo_note: "Demo mode: no real charges and no card storage.",
+        md_brands: "Accepted payment methods",
+        md_success_title: "Booking confirmed (demo)",
+        md_success_ref: "Reference",
+        md_success_note: "A simulated confirmation will be sent by email and WhatsApp with your booking details.",
+        md_success_wa: "Send via WhatsApp",
+        md_success_email: "Send by email",
+        md_err_required: "Please complete all required fields.",
+        md_err_email: "Please enter a valid email.",
+        md_err_phone: "Please enter a valid phone.",
+        md_err_cedula: "Ecuadorian ID must have 10 digits.",
+        md_err_passport: "Passport must have 6 to 9 characters.",
+        md_err_dates: "Please check your booking dates.",
+        md_err_cardnum: "Invalid card number.",
+        md_err_expiry: "Invalid or expired date.",
+        md_err_cvv: "Invalid CVV.",
+        md_processing: "Processing payment...",
         bk_room_undefined: "to be defined",
         steps_eyebrow: "How to book",
         steps_title: "Three steps and you're in",
@@ -504,7 +588,7 @@ function selectRoom(roomId) {
     updateBookingSelection(p);
     const target = document.getElementById('reservas');
     if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    const checkin = el('bk-checkin');
+    const checkin = document.getElementById('md-first');
     if (checkin) checkin.focus({ preventScroll: true });
 }
 
@@ -849,31 +933,10 @@ function render(c) {
             bookingSection.style.display = '';
             el('booking-eyebrow').textContent = t('bk_eyebrow');
             el('booking-title').textContent = t('bk_title');
-            el('bk-label-checkin').textContent = t('bk_checkin');
-            el('bk-label-checkout').textContent = t('bk_checkout');
-            el('bk-label-guests').textContent = t('bk_guests');
-            el('bk-submit').textContent = t('bk_submit');
             el('bk-note').textContent = t('bk_note');
+            el('open-booking-modal').textContent = t('md_open');
             updateBookingSelection(p);
-            const sel = el('bk-guests');
-            const prevVal = sel.value;
-            if (!sel.options.length) {
-                for (let i = 1; i <= 9; i++) {
-                    const opt = document.createElement('option');
-                    opt.value = i;
-                    opt.textContent = i;
-                    sel.appendChild(opt);
-                }
-                const optPlus = document.createElement('option');
-                optPlus.value = '10';
-                optPlus.textContent = '+9';
-                sel.appendChild(optPlus);
-            }
-            sel.value = prevVal || '2';
-            const isoToday = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-            const now = new Date();
-            el('bk-checkin').min = isoToday(now);
-            el('bk-checkout').min = isoToday(now);
+            if (typeof refreshLabelsStep1 === 'function') refreshLabelsStep1();
         }
     }
 
@@ -1057,54 +1120,449 @@ function initInteractions() {
     }
 }
 
-function initBookingForm() {
-    const form = document.getElementById('booking-form');
-    if (!form) return;
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const errEl = document.getElementById('bk-error');
-        if (!savedConfig) return;
-        const p = getActiveProperty(savedConfig);
-        const con = p.contact || {};
-        const base = getWhatsAppBase(con);
-        if (!base) return;
-        const ciV = el('bk-checkin').value;
-        const coV = el('bk-checkout').value;
-        const guestsRaw = parseInt(el('bk-guests').value, 10) || 2;
-        const guests = guestsRaw >= 10 ? '+9' : String(guestsRaw);
-        if (!ciV || !coV) {
-            errEl.textContent = t('bk_error_missing');
-            errEl.hidden = false;
-            return;
-        }
-        const ci = new Date(ciV + 'T12:00:00');
-        const co = new Date(coV + 'T12:00:00');
-        const today = new Date();
-        today.setHours(12, 0, 0, 0);
-        if (co <= ci) {
-            errEl.textContent = t('bk_error_order');
-            errEl.hidden = false;
-            return;
-        }
-        if (ci < today) {
-            errEl.textContent = t('bk_error_past');
-            errEl.hidden = false;
-            return;
-        }
-        errEl.hidden = true;
-        const nights = Math.round((co - ci) / 86400000);
-        const fmt = d => `${String(d.getDate()).padStart(2, '0')}/${String(d.getMonth() + 1).padStart(2, '0')}/${d.getFullYear()}`;
-        const nWord = nights === 1 ? t('bk_night_one') : t('bk_night_many');
-        const guestWord = guestsRaw === 1 ? t('bk_guest_one') : t('bk_guest_many');
-        const room = findRoom(p, activeRoom);
-        const propName = getPropertyName(p);
-        const roomName = room ? room.name : t('bk_room_undefined');
-        const msg = currentLang === 'en'
-            ? `Hi! I'd like to book at ${propName}.\nRoom: ${roomName}.\nFrom ${fmt(ci)} to ${fmt(co)} (${nights} ${nWord}).\nGuests: ${guests} ${guestWord}.\nIs it available?`
-            : `Hola, quiero reservar en ${propName}.\nHabitación: ${roomName}.\nDel ${fmt(ci)} al ${fmt(co)} (${nights} ${nWord}).\nHuéspedes: ${guests} ${guestWord}.\n¿Hay disponibilidad?`;
-        window.open(`${base}?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
-    });
+/* ========== Booking modal (direct reservation flow) ========== */
+const COUNTRIES = [
+  { code:'AF', name:'Afganistán', dial:'+93' },
+  { code:'AL', name:'Albania', dial:'+355' },
+  { code:'DE', name:'Alemania', dial:'+49' },
+  { code:'AD', name:'Andorra', dial:'+376' },
+  { code:'AR', name:'Argentina', dial:'+54' },
+  { code:'AU', name:'Australia', dial:'+61' },
+  { code:'AT', name:'Austria', dial:'+43' },
+  { code:'BE', name:'Bélgica', dial:'+32' },
+  { code:'BO', name:'Bolivia', dial:'+591' },
+  { code:'BR', name:'Brasil', dial:'+55' },
+  { code:'CA', name:'Canadá', dial:'+1' },
+  { code:'CL', name:'Chile', dial:'+56' },
+  { code:'CN', name:'China', dial:'+86' },
+  { code:'CO', name:'Colombia', dial:'+57' },
+  { code:'CR', name:'Costa Rica', dial:'+506' },
+  { code:'CU', name:'Cuba', dial:'+53' },
+  { code:'HR', name:'Croacia', dial:'+385' },
+  { code:'DK', name:'Dinamarca', dial:'+45' },
+  { code:'EC', name:'Ecuador', dial:'+593' },
+  { code:'EG', name:'Egipto', dial:'+20' },
+  { code:'SV', name:'El Salvador', dial:'+503' },
+  { code:'AE', name:'Emiratos Árabes', dial:'+971' },
+  { code:'SK', name:'Eslovaquia', dial:'+421' },
+  { code:'SI', name:'Eslovenia', dial:'+386' },
+  { code:'ES', name:'España', dial:'+34' },
+  { code:'US', name:'Estados Unidos', dial:'+1' },
+  { code:'EE', name:'Estonia', dial:'+372' },
+  { code:'FI', name:'Finlandia', dial:'+358' },
+  { code:'FR', name:'Francia', dial:'+33' },
+  { code:'GR', name:'Grecia', dial:'+30' },
+  { code:'GT', name:'Guatemala', dial:'+502' },
+  { code:'HN', name:'Honduras', dial:'+504' },
+  { code:'HK', name:'Hong Kong', dial:'+852' },
+  { code:'HU', name:'Hungría', dial:'+36' },
+  { code:'IN', name:'India', dial:'+91' },
+  { code:'ID', name:'Indonesia', dial:'+62' },
+  { code:'IE', name:'Irlanda', dial:'+353' },
+  { code:'IS', name:'Islandia', dial:'+354' },
+  { code:'IL', name:'Israel', dial:'+972' },
+  { code:'IT', name:'Italia', dial:'+39' },
+  { code:'JP', name:'Japón', dial:'+81' },
+  { code:'KE', name:'Kenia', dial:'+254' },
+  { code:'LV', name:'Letonia', dial:'+371' },
+  { code:'LT', name:'Lituania', dial:'+370' },
+  { code:'LU', name:'Luxemburgo', dial:'+352' },
+  { code:'MY', name:'Malasia', dial:'+60' },
+  { code:'MT', name:'Malta', dial:'+356' },
+  { code:'MA', name:'Marruecos', dial:'+212' },
+  { code:'MX', name:'México', dial:'+52' },
+  { code:'MC', name:'Mónaco', dial:'+377' },
+  { code:'NI', name:'Nicaragua', dial:'+505' },
+  { code:'NO', name:'Noruega', dial:'+47' },
+  { code:'NZ', name:'Nueva Zelanda', dial:'+64' },
+  { code:'NL', name:'Países Bajos', dial:'+31' },
+  { code:'PA', name:'Panamá', dial:'+507' },
+  { code:'PY', name:'Paraguay', dial:'+595' },
+  { code:'PE', name:'Perú', dial:'+51' },
+  { code:'PL', name:'Polonia', dial:'+48' },
+  { code:'PT', name:'Portugal', dial:'+351' },
+  { code:'PR', name:'Puerto Rico', dial:'+1' },
+  { code:'GB', name:'Reino Unido', dial:'+44' },
+  { code:'CZ', name:'República Checa', dial:'+420' },
+  { code:'DO', name:'República Dominicana', dial:'+1' },
+  { code:'RO', name:'Rumanía', dial:'+40' },
+  { code:'RU', name:'Rusia', dial:'+7' },
+  { code:'SG', name:'Singapur', dial:'+65' },
+  { code:'ZA', name:'Sudáfrica', dial:'+27' },
+  { code:'SE', name:'Suecia', dial:'+46' },
+  { code:'CH', name:'Suiza', dial:'+41' },
+  { code:'TH', name:'Tailandia', dial:'+66' },
+  { code:'TR', name:'Turquía', dial:'+90' },
+  { code:'UA', name:'Ucrania', dial:'+380' },
+  { code:'UY', name:'Uruguay', dial:'+598' },
+  { code:'VE', name:'Venezuela', dial:'+58' }
+];
+
+let bookingState = { property: null, room: null, roomName: '', checkin: '', checkout: '', guests: '2', guest: null, method: 'card', cardLast4: '', ref: '' };
+let bookingStep = 1;
+
+function isModalOpen() {
+  const m = el('booking-modal');
+  return !!(m && !m.hidden);
 }
+
+function populateCountrySelect() {
+  const sel = el('md-country');
+  if (!sel || sel.options.length) return;
+  COUNTRIES.slice().sort((a,b)=> a.name.localeCompare(b.name, currentLang === 'en' ? 'en' : 'es')).forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c.dial;
+    opt.textContent = `${c.name} (${c.dial})`;
+    if (c.dial === '+593' && c.code === 'EC') opt.selected = true;
+    sel.appendChild(opt);
+  });
+}
+
+function populateGuestSelectModal() {
+  const sel = el('md-guests');
+  if (!sel || sel.options.length) return;
+  for (let i = 1; i <= 9; i++) {
+    const opt = document.createElement('option');
+    opt.value = i; opt.textContent = i; sel.appendChild(opt);
+  }
+  const optPlus = document.createElement('option');
+  optPlus.value = '10'; optPlus.textContent = '+9'; sel.appendChild(optPlus);
+  sel.value = bookingState.guests || '2';
+}
+
+function isoToday() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+
+function setStepVisibility(n) {
+  bookingStep = n;
+  document.querySelectorAll('[data-step-panel]').forEach(panel => {
+    panel.hidden = (parseInt(panel.getAttribute('data-step-panel'),10) !== n);
+  });
+  document.querySelectorAll('.booking-step-pill').forEach(pill => {
+    const s = parseInt(pill.getAttribute('data-step'),10);
+    pill.classList.toggle('active', s === n);
+  });
+}
+
+function lockBodyScroll(lock) {
+  document.body.style.overflow = lock ? 'hidden' : '';
+}
+
+function renderPaymentBrands() {
+  const container = el('payment-brands');
+  if (!container || container.children.length) return;
+  const heading = document.createElement('p');
+  heading.className = 'bk-field';
+  heading.style.marginBottom = '8px';
+  heading.innerHTML = `<strong style="font-size:0.9rem;">${t('md_brands')}</strong>`;
+  container.appendChild(heading);
+  const wrap = document.createElement('div');
+  wrap.style.display = 'flex'; wrap.style.flexWrap = 'wrap'; wrap.style.gap = '8px';
+  const brands = [
+    { name: 'Visa', html: '<svg viewBox="0 0 80 26" aria-label="Visa"><rect width="80" height="26" rx="6" fill="#fff" stroke="#d9d9d9"/><text x="40" y="18" text-anchor="middle" fill="#1a1f71" font-size="15" font-weight="700" font-family="Arial">VISA</text></svg>' },
+    { name: 'Mastercard', html: '<svg viewBox="0 0 80 26" aria-label="Mastercard"><rect width="80" height="26" rx="6" fill="#fff" stroke="#d9d9d9"/><circle cx="32" cy="13" r="8" fill="#eb001b"/><circle cx="48" cy="13" r="8" fill="#f79e1b"/></svg>' },
+    { name: 'American Express', html: '<svg viewBox="0 0 80 26" aria-label="American Express"><rect width="80" height="26" rx="6" fill="#006fcf"/><text x="40" y="17" text-anchor="middle" fill="#fff" font-size="9" font-weight="700" font-family="Arial">AMEX</text></svg>' },
+    { name: 'Discover', html: '<svg viewBox="0 0 80 26" aria-label="Discover"><rect width="80" height="26" rx="6" fill="#fff" stroke="#d9d9d9"/><circle cx="60" cy="13" r="8" fill="#ff6000"/><text x="26" y="17" text-anchor="middle" fill="#231f20" font-size="9" font-weight="700" font-family="Arial">DISCOVER</text></svg>' },
+    { name: 'Apple Pay', html: '<svg viewBox="0 0 80 26" aria-label="Apple Pay"><rect width="80" height="26" rx="6" fill="#000"/><text x="40" y="17" text-anchor="middle" fill="#fff" font-size="11" font-weight="600" font-family="Arial"> Pay</text></svg>' },
+    { name: 'Payphone', html: '<svg viewBox="0 0 80 26" aria-label="Payphone"><rect width="80" height="26" rx="6" fill="#25d366"/><text x="40" y="17" text-anchor="middle" fill="#fff" font-size="10" font-weight="700" font-family="Arial">Payphone</text></svg>' }
+  ];
+  brands.forEach(b => {
+    const span = document.createElement('span');
+    span.className = 'pay-logo';
+    span.title = b.name;
+    span.innerHTML = b.html;
+    wrap.appendChild(span);
+  });
+  container.appendChild(wrap);
+}
+
+function populateModalSummary() {
+  const bar = el('booking-summary-bar');
+  if (!bar) return;
+  const p = getActiveProperty(savedConfig || {});
+  const propName = getPropertyName(p);
+  const room = findRoom(p, bookingState.room);
+  const roomName = room ? room.name : t('bk_room_undefined');
+  const guestCount = bookingState.guests === '10' ? '+9' : bookingState.guests;
+  bar.innerHTML = `
+    <div><strong>${escapeHtml(propName)}</strong></div>
+    <div>${escapeHtml(roomName)}</div>
+    <div>${escapeHtml(bookingState.checkin || '')} → ${escapeHtml(bookingState.checkout || '')}</div>
+    <div>${escapeHtml(guestCount)} ${t('bk_guest_many')}</div>
+  `;
+  if (room) bookingState.roomName = room.name;
+  el('md-success-ref') && (el('md-success-ref').textContent = '');
+}
+
+function validateBookingDates(ci, co) {
+  if (!ci || !co) return t('md_err_dates');
+  const ciD = new Date(ci + 'T12:00:00');
+  const coD = new Date(co + 'T12:00:00');
+  const today = new Date(); today.setHours(12,0,0,0);
+  if (coD <= ciD) return t('md_err_dates');
+  if (ciD < today) return t('md_err_dates');
+  return '';
+}
+
+function setModalError(id, msg) {
+  const e = el(id);
+  if (!e) return;
+  if (msg) { e.textContent = msg; e.hidden = false; }
+  else { e.textContent = ''; e.hidden = true; }
+}
+
+function openBookingModal(prefillGuests) {
+  const modal = el('booking-modal');
+  if (!modal) return;
+  populateCountrySelect();
+  populateGuestSelectModal();
+  renderPaymentBrands();
+  const p = getActiveProperty(savedConfig || {});
+  bookingState.property = activeProperty;
+  bookingState.room = activeRoom;
+  bookingState.roomName = activeRoom ? (findRoom(p, activeRoom)?.name || t('bk_room_undefined')) : t('bk_room_undefined');
+
+  const ciInput = el('md-checkin'), coInput = el('md-checkout'), gInput = el('md-guests');
+  const today = isoToday();
+  if (ciInput) { ciInput.min = today; if (!ciInput.value) { const d = new Date(); d.setDate(d.getDate()+14); ciInput.value = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; } }
+  if (coInput) { coInput.min = today; if (!coInput.value) { const d = new Date(); d.setDate(d.getDate()+16); coInput.value = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; } }
+  bookingState.checkin = ciInput ? ciInput.value : '';
+  bookingState.checkout = coInput ? coInput.value : '';
+  bookingState.guests = (gInput && gInput.value) ? gInput.value : '2';
+
+  el('md-first') && (el('md-first').value = '');
+  el('md-last') && (el('md-last').value = '');
+  el('md-email') && (el('md-email').value = '');
+  el('md-phone') && (el('md-phone').value = '');
+  el('md-docnum') && (el('md-docnum').value = '');
+  el('md-cardnum') && (el('md-cardnum').value = '');
+  el('md-expiry') && (el('md-expiry').value = '');
+  el('md-cvv') && (el('md-cvv').value = '');
+  el('md-cardholder') && (el('md-cardholder').value = '');
+  el('md-doctype') && (el('md-doctype').value = 'cedula');
+  setModalError('md-error-1', '');
+  setModalError('md-error-2', '');
+  const cardForm = el('card-form');
+  if (cardForm) cardForm.hidden = false;
+  const payExtra = el('payment-extra');
+  if (payExtra) payExtra.hidden = true;
+  document.querySelectorAll('.payment-method').forEach(b => b.classList.toggle('active', b.getAttribute('data-method') === 'card'));
+  populateModalSummary();
+  modal.hidden = false;
+  modal.setAttribute('aria-hidden', 'false');
+  setStepVisibility(1);
+  lockBodyScroll(true);
+  setTimeout(() => { el('md-first')?.focus(); }, 50);
+}
+
+function closeBookingModal() {
+  const modal = el('booking-modal');
+  if (!modal) return;
+  modal.hidden = true;
+  modal.setAttribute('aria-hidden', 'true');
+  lockBodyScroll(false);
+  bookingState.cardLast4 = '';
+  setStepVisibility(1);
+}
+
+function refreshLabelsStep1() {
+  if (!el('booking-modal')) return;
+  el('booking-modal-title').textContent = t('md_title');
+  el('md-label-checkin').textContent = t('md_checkin');
+  el('md-label-checkout').textContent = t('md_checkout');
+  el('md-label-guests').textContent = t('md_guests');
+  el('md-label-country').textContent = t('md_country');
+  el('md-label-phone').textContent = t('md_phone');
+  el('md-label-first').textContent = t('md_first');
+  el('md-label-last').textContent = t('md_last');
+  el('md-label-email').textContent = t('md_email');
+  el('md-label-doctype').textContent = t('md_doctype');
+  el('md-label-docnum').textContent = t('md_docnum');
+  const dt = el('md-doctype');
+  if (dt) { dt.options[0].textContent = t('md_cedula'); dt.options[1].textContent = t('md_passport'); }
+  el('md-next-1').textContent = t('md_next');
+  el('md-demo-note').textContent = t('md_demo_note');
+  el('md-label-cardnum').textContent = t('md_cardnum');
+  el('md-label-expiry').textContent = t('md_expiry');
+  el('md-label-cvv').textContent = t('md_cvv');
+  el('md-label-cardholder').textContent = t('md_cardholder');
+  el('md-back-2').textContent = t('md_back');
+  el('md-pay').textContent = t('md_pay');
+  el('md-success-title').textContent = t('md_success_title');
+  el('md-success-note').textContent = t('md_success_note');
+  el('md-success-whatsapp').textContent = t('md_success_wa');
+  el('md-success-email').textContent = t('md_success_email');
+  el('md-success-close').textContent = t('md_close');
+  const pills = document.querySelectorAll('.booking-step-pill');
+  if (pills[0]) pills[0].textContent = t('md_step_data');
+  if (pills[1]) pills[1].textContent = t('md_step_payment');
+  if (pills[2]) pills[2].textContent = t('md_step_success');
+  document.querySelector('#open-booking-modal')?.setAttribute('title', t('md_open'));
+}
+
+function luhn(num) {
+  const s = num.replace(/\s+/g,'');
+  if (!/^\d{13,19}$/.test(s)) return false;
+  let sum = 0, alt = false;
+  for (let i = s.length - 1; i >= 0; i--) {
+    let n = parseInt(s.charAt(i),10);
+    if (alt) { n *= 2; if (n > 9) n -= 9; }
+    sum += n; alt = !alt;
+  }
+  return sum % 10 === 0;
+}
+
+function step1Next() {
+  const ci = el('md-checkin')?.value || '';
+  const co = el('md-checkout')?.value || '';
+  const guests = el('md-guests')?.value || '2';
+  const first = (el('md-first')?.value || '').trim();
+  const last = (el('md-last')?.value || '').trim();
+  const email = (el('md-email')?.value || '').trim();
+  const country = el('md-country')?.value || '+593';
+  const phoneRaw = (el('md-phone')?.value || '').trim();
+  const phone = phoneRaw.replace(/[^\d]/g,'');
+  const docType = el('md-doctype')?.value || 'cedula';
+  const docNum = (el('md-docnum')?.value || '').trim();
+  const derr = validateBookingDates(ci, co);
+  if (derr) { setModalError('md-error-1', derr); return; }
+  if (!first || !last || !email || !phone || !docNum) { setModalError('md-error-1', t('md_err_required')); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { setModalError('md-error-1', t('md_err_email')); return; }
+  if (phone.length < 6 || phone.length > 15) { setModalError('md-error-1', t('md_err_phone')); return; }
+  if (docType === 'cedula') {
+    if (!/^\d{10}$/.test(docNum)) { setModalError('md-error-1', t('md_err_cedula')); return; }
+  } else {
+    if (!/^[A-Za-z0-9]{6,9}$/.test(docNum)) { setModalError('md-error-1', t('md_err_passport')); return; }
+  }
+  setModalError('md-error-1', '');
+  bookingState.checkin = ci; bookingState.checkout = co; bookingState.guests = guests;
+  bookingState.guest = { first, last, email, country, phone: country + phone, docType, docNum };
+  populateModalSummary();
+  setStepVisibility(2);
+}
+
+function step2Pay() {
+  const method = (document.querySelector('.payment-method.active')?.getAttribute('data-method')) || 'card';
+  bookingState.method = method;
+  if (method === 'card') {
+    const cardNum = (el('md-cardnum')?.value || '').replace(/\s+/g,'');
+    const expiry = (el('md-expiry')?.value || '').trim();
+    const cvv = (el('md-cvv')?.value || '').trim();
+    const holder = (el('md-cardholder')?.value || '').trim();
+    if (!/^\d{13,19}$/.test(cardNum) || !luhn(cardNum)) { setModalError('md-error-2', t('md_err_cardnum')); return; }
+    if (!/^\d{2}\/\d{2}$/.test(expiry)) { setModalError('md-error-2', t('md_err_expiry')); return; }
+    const mm = parseInt(expiry.slice(0,2),10);
+    const yy = parseInt(expiry.slice(3),10);
+    const now = new Date();
+    const expDate = new Date(2000 + yy, mm, 0); // last day of month
+    if (mm < 1 || mm > 12 || expDate < now) { setModalError('md-error-2', t('md_err_expiry')); return; }
+    if (!/^\d{3,4}$/.test(cvv)) { setModalError('md-error-2', t('md_err_cvv')); return; }
+    if (!holder) { setModalError('md-error-2', t('md_err_required')); return; }
+    bookingState.cardLast4 = cardNum.slice(-4);
+    bookingState.cardHolder = holder;
+  } else {
+    bookingState.cardLast4 = '';
+    bookingState.cardHolder = '';
+  }
+  setModalError('md-error-2', '');
+  const btn = el('md-pay');
+  const prevText = btn ? btn.textContent : '';
+  if (btn) { btn.textContent = t('md_processing'); btn.disabled = true; }
+  setTimeout(() => {
+    if (btn) { btn.textContent = prevText; btn.disabled = false; }
+    finishBooking();
+  }, 1600);
+}
+
+function finishBooking() {
+  const ref = 'WHE-' + new Date().toISOString().slice(0,10).replace(/-/g,'') + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+  bookingState.ref = ref;
+  const p = getActiveProperty(savedConfig || {});
+  const propName = getPropertyName(p);
+  const room = findRoom(p, bookingState.room);
+  const roomName = room ? room.name : t('bk_room_undefined');
+  const guestCount = bookingState.guests === '10' ? '+9' : bookingState.guests;
+  const g = bookingState.guest || {};
+  const fullPhone = g.phone || '';
+  const summaryHtml = `
+    <div><b>${escapeHtml(t('md_success_ref'))}</b><span>${escapeHtml(ref)}</span></div>
+    <div><b>${escapeHtml(propName)}</b><span>${escapeHtml(roomName)}</span></div>
+    <div><b>${escapeHtml(t('md_checkin'))}</b><span>${escapeHtml(bookingState.checkin)}</span></div>
+    <div><b>${escapeHtml(t('md_checkout'))}</b><span>${escapeHtml(bookingState.checkout)}</span></div>
+    <div><b>${escapeHtml(t('md_guests'))}</b><span>${escapeHtml(guestCount)}</span></div>
+    <div><b>${escapeHtml(t('md_first'))}</b><span>${escapeHtml(g.first || '')} ${escapeHtml(g.last || '')}</span></div>
+    <div><b>${escapeHtml(t('md_email'))}</b><span>${escapeHtml(g.email || '')}</span></div>
+    <div><b>${escapeHtml(t('md_phone'))}</b><span>${escapeHtml(fullPhone)}</span></div>
+    <div><b>${escapeHtml(t('md_doctype'))}</b><span>${escapeHtml(g.docType === 'cedula' ? t('md_cedula') : t('md_passport'))} ${escapeHtml(g.docNum || '')}</span></div>
+    <div><b>Pago</b><span>${escapeHtml(bookingState.method)}${bookingState.cardLast4 ? ' •••• ' + bookingState.cardLast4 : ''}</span></div>
+  `;
+  const summaryEl = el('md-success-summary');
+  if (summaryEl) summaryEl.innerHTML = summaryHtml;
+  const refEl = el('md-success-ref');
+  if (refEl) refEl.textContent = `${t('md_success_ref')}: ${ref}`;
+
+  const guestWord = bookingState.guests === '1' ? t('bk_guest_one') : t('bk_guest_many');
+  const nNights = Math.round((new Date(bookingState.checkout + 'T12:00:00') - new Date(bookingState.checkin + 'T12:00:00')) / 86400000);
+  const msg = currentLang === 'en'
+    ? `Booking confirmed (demo) ${ref}\nProperty: ${propName}\nRoom: ${roomName}\nFrom ${bookingState.checkin} to ${bookingState.checkout} (${nNights} nights).\nGuests: ${guestCount} ${guestWord}.\nGuest: ${g.first} ${g.last}\nEmail: ${g.email}\nPhone: ${fullPhone}\nDocument: ${g.docNum}\nPayment: ${bookingState.method}${bookingState.cardLast4 ? ' ending ' + bookingState.cardLast4 : ''}`
+    : `Reserva confirmada (demo) ${ref}\nPropiedad: ${propName}\nHabitación: ${roomName}\nDel ${bookingState.checkin} al ${bookingState.checkout} (${nNights} noches).\nHuéspedes: ${guestCount} ${guestWord}.\nHuésped: ${g.first} ${g.last}\nEmail: ${g.email}\nTeléfono: ${fullPhone}\nDocumento: ${g.docNum}\nPago: ${bookingState.method}${bookingState.cardLast4 ? ' termina en ' + bookingState.cardLast4 : ''}`;
+  const waLink = `https://wa.me/593995464860?text=${encodeURIComponent(msg)}`;
+  const emailSubject = encodeURIComponent(currentLang === 'en' ? `Booking ${ref} - ${propName}` : `Reserva ${ref} - ${propName}`);
+  const emailBody = encodeURIComponent(msg);
+  const emailLink = `mailto:?subject=${emailSubject}&body=${emailBody}`;
+  const waBtn = el('md-success-whatsapp'); if (waBtn) waBtn.href = waLink;
+  const emBtn = el('md-success-email'); if (emBtn) emBtn.href = emailLink;
+  setStepVisibility(3);
+}
+
+
+
+function initBookingModal() {
+  const modal = el('booking-modal');
+  if (!modal) return;
+  refreshLabelsStep1();
+  el('open-booking-modal')?.addEventListener('click', () => openBookingModal());
+  el('booking-modal-close')?.addEventListener('click', closeBookingModal);
+  document.querySelectorAll('[data-modal-close]').forEach(n => n.addEventListener('click', closeBookingModal));
+  el('md-next-1')?.addEventListener('click', step1Next);
+  el('md-back-2')?.addEventListener('click', () => setStepVisibility(1));
+  el('md-pay')?.addEventListener('click', step2Pay);
+  el('md-success-close')?.addEventListener('click', closeBookingModal);
+  document.addEventListener('keydown', (e) => {
+    if (!isModalOpen()) return;
+    if (e.key === 'Escape') closeBookingModal();
+  });
+  document.querySelectorAll('.payment-method').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.payment-method').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const method = btn.getAttribute('data-method');
+      const extra = el('payment-extra');
+      const txt = el('payment-extra-text');
+      if (method === 'card') {
+        el('card-form').hidden = false;
+        if (extra) extra.hidden = true;
+      } else {
+        el('card-form').hidden = true;
+        if (extra) { extra.hidden = false; if (txt) txt.textContent = method === 'applepay' ? 'Continuar con Apple Pay (demo).' : 'Continuar con Payphone (demo).'; }
+      }
+    });
+  });
+  el('md-checkin')?.addEventListener('change', (e) => { bookingState.checkin = e.target.value; populateModalSummary(); });
+  el('md-checkout')?.addEventListener('change', (e) => { bookingState.checkout = e.target.value; populateModalSummary(); });
+  el('md-guests')?.addEventListener('change', (e) => { bookingState.guests = e.target.value; populateModalSummary(); });
+  el('md-country')?.addEventListener('change', (e) => { if (bookingState.guest) bookingState.guest.country = e.target.value; });
+}
+
+/* localize modal labels on render when available */
+const _origApplyLang = typeof applyLang === 'function' ? applyLang : null;
+if (_origApplyLang) {
+  const __applyLang = applyLang;
+  applyLang = function(lang) { __applyLang(lang); if (el('booking-modal')) refreshLabelsStep1(); };
+}
+
 
 document.addEventListener('DOMContentLoaded', async () => {
     activeProperty = detectProperty();
@@ -1114,7 +1572,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
     document.getElementById('lang-toggle').addEventListener('click', toggleLang);
 
-    initBookingForm();
+    initBookingModal();
 
     const propertyTabs = Array.from(document.querySelectorAll('.property-tab'));
     propertyTabs.forEach((tab, i) => {
@@ -1169,3 +1627,4 @@ document.addEventListener('DOMContentLoaded', async () => {
         render(config);
     }
 });
+

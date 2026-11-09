@@ -2362,6 +2362,49 @@
         flex-direction: column;
       }
     }
+
+/* Booking modal */
+.booking-modal[hidden] { display: none !important; }
+.booking-modal { position: fixed; inset: 0; z-index: 1200; display: flex; align-items: center; justify-content: center; padding: 20px; }
+.booking-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.65); backdrop-filter: blur(3px); }
+.booking-modal-dialog { position: relative; width: min(920px, 95vw); max-height: 90vh; overflow: auto; background: var(--card-bg); border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6); padding: 24px 22px 20px; color: var(--ink); }
+.booking-modal-close { position: absolute; top: 10px; right: 14px; border: none; background: transparent; color: var(--ink-soft); font-size: 1.6rem; line-height: 1; cursor: pointer; }
+.booking-modal-close:hover { color: var(--gold); }
+.booking-modal-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+.booking-modal-head h2 { margin: 0; font-size: 1.35rem; }
+.booking-steps { display: flex; gap: 8px; flex-wrap: wrap; }
+.booking-step-pill { padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--ink-soft); font-size: 0.82rem; font-weight: 600; }
+.booking-step-pill.active { background: var(--gold); color: #102018; border-color: var(--gold); }
+.booking-summary-bar { display: flex; flex-wrap: wrap; gap: 10px; padding: 10px 12px; border: 1px dashed var(--line); border-radius: 10px; color: var(--ink-soft); font-size: 0.9rem; margin-bottom: 14px; }
+.booking-summary-bar strong { color: var(--ink); }
+.booking-step[hidden] { display: none !important; }
+.form-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 14px; }
+@media (max-width: 720px) { .form-grid-2 { grid-template-columns: 1fr; } .booking-modal-dialog { padding: 18px 14px; } }
+.bk-field.full { grid-column: 1 / -1; }
+.bk-field input, .bk-field select { width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--paper-warm); color: var(--ink); font: inherit; }
+.bk-field label { display: block; margin-bottom: 6px; font-size: 0.84rem; color: var(--ink-soft); font-weight: 600; }
+.booking-actions { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 16px; }
+
+/* Payment */
+.payment-brands { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.pay-logo { display: inline-flex; align-items: center; justify-content: center; min-width: 64px; height: 34px; padding: 0 10px; border-radius: 8px; border: 1px solid var(--line); background: #fff; }
+.pay-logo svg { height: 18px; width: auto; }
+.payment-methods { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+.payment-method { padding: 8px 14px; border-radius: 10px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; font-weight: 600; }
+.payment-method.active { border-color: var(--gold); color: var(--gold); }
+.demo-note { font-size: 0.82rem; color: var(--ink-soft); font-style: italic; margin: 8px 0 10px; padding: 8px 10px; border-left: 3px solid var(--gold); background: rgba(197,160,89,0.08); border-radius: 6px; }
+.payment-extra { margin: 8px 0; padding: 10px; border-radius: 10px; background: var(--paper-warm); color: var(--ink-soft); font-size: 0.9rem; }
+.payment-extra[hidden] { display: none !important; }
+
+/* Success */
+.success-card { text-align: center; padding: 10px 6px; }
+.success-icon { width: 64px; height: 64px; margin: 0 auto 12px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: var(--gold); color: #102018; font-size: 2rem; font-weight: 700; }
+.success-ref { font-family: 'IBM Plex Mono', monospace; font-size: 1.05rem; letter-spacing: .06em; margin: 8px 0 12px; color: var(--gold); }
+.success-summary { text-align: left; margin: 10px auto 12px; max-width: 520px; border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; }
+.success-summary div { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; font-size: 0.9rem; border-bottom: 1px solid var(--line); }
+.success-summary div:last-child { border-bottom: none; }
+.success-summary b { font-weight: 700; }
+.success-note { font-size: 0.85rem; color: var(--ink-soft); margin-top: 10px; }
   </style>
 </head>
 
@@ -2544,21 +2587,7 @@
         <button type="button" class="booking-selection-clear" id="booking-selection-clear"
           aria-label="Quitar habitación">&times;</button>
       </div>
-      <form class="booking-form" id="booking-form" novalidate>
-        <div class="bk-field">
-          <label for="bk-checkin" id="bk-label-checkin">Llegada</label>
-          <input type="date" id="bk-checkin" required>
-        </div>
-        <div class="bk-field">
-          <label for="bk-checkout" id="bk-label-checkout">Salida</label>
-          <input type="date" id="bk-checkout" required>
-        </div>
-        <div class="bk-field">
-          <label for="bk-guests" id="bk-label-guests">Huéspedes</label>
-          <select id="bk-guests"></select>
-        </div>
-        <button type="submit" class="btn btn-gold" id="bk-submit">Continuar en WhatsApp</button>
-      </form>
+       <button type="button" class="btn btn-gold" id="open-booking-modal">Iniciar reserva</button>
       <p class="bk-error" id="bk-error" hidden></p>
       <p class="bk-note" id="bk-note">Completá los datos y te llevamos a WhatsApp con la consulta ya armada.</p>
     </div>
@@ -2675,6 +2704,130 @@
       </svg>
       <span id="mobile-bar-text">Reservar ahora</span>
     </a>
+  </div>
+
+  <!-- Modal de reserva directa -->
+  <div class="booking-modal" id="booking-modal" hidden aria-hidden="true">
+    <div class="booking-modal-backdrop" data-modal-close></div>
+    <div class="booking-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="booking-modal-title">
+      <button type="button" class="booking-modal-close" id="booking-modal-close" aria-label="Cerrar">&times;</button>
+      <header class="booking-modal-head">
+        <h2 id="booking-modal-title">Reserva directa</h2>
+        <div class="booking-steps" id="booking-steps">
+          <button type="button" class="booking-step-pill active" data-step="1" disabled>1. Datos</button>
+          <button type="button" class="booking-step-pill" data-step="2" disabled>2. Pago</button>
+          <button type="button" class="booking-step-pill" data-step="3" disabled>3. Éxito</button>
+        </div>
+      </header>
+      <div class="booking-summary-bar" id="booking-summary-bar"></div>
+      <div class="booking-modal-body">
+        <!-- Paso 1 -->
+        <section class="booking-step" data-step-panel="1">
+          <div class="form-grid-2">
+            <div class="bk-field">
+              <label for="md-checkin" id="md-label-checkin">Llegada</label>
+              <input type="date" id="md-checkin" required>
+            </div>
+            <div class="bk-field">
+              <label for="md-checkout" id="md-label-checkout">Salida</label>
+              <input type="date" id="md-checkout" required>
+            </div>
+            <div class="bk-field">
+              <label for="md-guests" id="md-label-guests">Huéspedes</label>
+              <select id="md-guests"></select>
+            </div>
+            <div class="bk-field">
+              <label for="md-country" id="md-label-country">País</label>
+              <select id="md-country"></select>
+            </div>
+            <div class="bk-field">
+              <label for="md-phone" id="md-label-phone">Teléfono</label>
+              <input type="tel" id="md-phone" required>
+            </div>
+            <div class="bk-field">
+              <label for="md-first" id="md-label-first">Nombre</label>
+              <input type="text" id="md-first" required autocomplete="given-name">
+            </div>
+            <div class="bk-field">
+              <label for="md-last" id="md-label-last">Apellido</label>
+              <input type="text" id="md-last" required autocomplete="family-name">
+            </div>
+            <div class="bk-field">
+              <label for="md-email" id="md-label-email">Correo electrónico</label>
+              <input type="email" id="md-email" required autocomplete="email">
+            </div>
+            <div class="bk-field">
+              <label for="md-doctype" id="md-label-doctype">Documento</label>
+              <select id="md-doctype">
+                <option value="cedula">Cédula (Ecuador)</option>
+                <option value="passport">Pasaporte</option>
+              </select>
+            </div>
+            <div class="bk-field">
+              <label for="md-docnum" id="md-label-docnum">Número de documento</label>
+              <input type="text" id="md-docnum" required>
+            </div>
+          </div>
+          <p class="bk-error" id="md-error-1" hidden></p>
+          <div class="booking-actions">
+            <button type="button" class="btn btn-gold" id="md-next-1">Continuar al pago</button>
+          </div>
+        </section>
+
+        <!-- Paso 2 -->
+        <section class="booking-step" data-step-panel="2" hidden>
+          <div class="payment-brands" id="payment-brands"></div>
+          <div class="payment-methods" id="payment-methods">
+            <button type="button" class="payment-method active" data-method="card">Tarjeta</button>
+            <button type="button" class="payment-method" data-method="applepay">Apple Pay</button>
+            <button type="button" class="payment-method" data-method="payphone">Payphone</button>
+          </div>
+          <p class="demo-note" id="md-demo-note">Modo demo: no se realizan cobros reales ni se almacenan tarjetas.</p>
+          <div class="form-grid-2 card-form" id="card-form">
+            <div class="bk-field full">
+              <label for="md-cardnum" id="md-label-cardnum">Número de tarjeta</label>
+              <input type="text" id="md-cardnum" inputmode="numeric" autocomplete="cc-number" maxlength="19">
+            </div>
+            <div class="bk-field">
+              <label for="md-expiry" id="md-label-expiry">Expiración (MM/AA)</label>
+              <input type="text" id="md-expiry" inputmode="numeric" autocomplete="cc-exp" maxlength="5" placeholder="MM/AA">
+            </div>
+            <div class="bk-field">
+              <label for="md-cvv" id="md-label-cvv">CVV</label>
+              <input type="text" id="md-cvv" inputmode="numeric" autocomplete="cc-csc" maxlength="4">
+            </div>
+            <div class="bk-field full">
+              <label for="md-cardholder" id="md-label-cardholder">Titular de la tarjeta</label>
+              <input type="text" id="md-cardholder" autocomplete="cc-name">
+            </div>
+          </div>
+          <div class="payment-extra" id="payment-extra" hidden>
+            <p id="payment-extra-text">Continuar con el método seleccionado en la pasarela externa.</p>
+          </div>
+          <p class="bk-error" id="md-error-2" hidden></p>
+          <div class="booking-actions">
+            <button type="button" class="btn btn-ghost" id="md-back-2">Atrás</button>
+            <button type="button" class="btn btn-gold" id="md-pay">Pagar (demo)</button>
+          </div>
+        </section>
+
+        <!-- Paso 3 -->
+        <section class="booking-step" data-step-panel="3" hidden>
+          <div class="success-card">
+            <div class="success-icon">✓</div>
+            <h3 id="md-success-title">Reserva confirmada (demo)</h3>
+            <div class="success-ref" id="md-success-ref"></div>
+            <div class="success-summary" id="md-success-summary"></div>
+            <p class="success-note" id="md-success-note">Se enviará una confirmación simulada por correo y WhatsApp con los datos de la reserva.</p>
+            <div class="booking-actions">
+              <a id="md-success-whatsapp" class="btn btn-gold" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+              <a id="md-success-email" class="btn btn-ghost">Enviar por correo</a>
+              <button type="button" class="btn btn-ghost" id="md-success-close">Cerrar</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
   </div>
 
   <script src="config-data.js"></script>
