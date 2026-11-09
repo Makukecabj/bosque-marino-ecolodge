@@ -556,7 +556,7 @@ function render(c) {
     const schemaEl = el('schema-json');
     if (schemaEl) schemaEl.textContent = JSON.stringify(buildSchema(c));
 
-    el('nav-logo-text').textContent = cleanDisplayName(b.name || b.short_name || '');
+    el('nav-logo-text').textContent = activeProperty === 'whale' ? 'Whale House Hotel' : 'Bosque Marino Ecolodge';
     // El splash se elimina del DOM despues del primer render; en
     // re-renders (cambio de idioma) hay que no tocarlo o corta todo.
     const splashLogo = el('splash-logo');

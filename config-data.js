@@ -11,7 +11,7 @@
     id: "bosque",
     label: "Bosque Marino",
     hero: {
-      video: "videos/city-video.mp4",
+      video: "",
       poster: "fotos/foto-01.webp",
       eyebrow: "Puerto López · Manabí · Ecuador",
       title_line1: "Hospédate en",
