@@ -586,46 +586,10 @@ function render(c) {
 
     el('nav-cta').href = waLink;
     el('nav-cta').textContent = t('nav_cta');
-    el('hero-video').poster = h.poster || '';
+    const heroBg = el('hero-bg');
+    if (heroBg) heroBg.src = h.poster || h.image || '';
     const heroSection = document.querySelector('.hero');
-    if (h.video) {
-        // Carga diferida del video del hero: el poster (foto real) se ve al
-        // instante y el video se carga despues del primer paint,
-        // solo en dispositivos y conexiones que lo puedan bancar.
-        el('hero-video').style.display = '';
-        if (heroSection) heroSection.classList.remove('no-video');
-        const conn = navigator.connection || {};
-        const slowNetwork = conn.saveData === true || /(^|-)2g$/.test(conn.effectiveType || '');
-        const startVideoLoad = () => {
-            const video = el('hero-video');
-            const source = el('hero-video-src');
-            // OJO: no usar `source.src` como guard: con el atributo src=""
-            // la propiedad ya resuelve a la URL del documento y da truthy,
-            // entonces el video nunca se cargaba. Hay que mirar el atributo.
-            if (!video || !source || source.getAttribute('src')) return;
-            source.src = h.video;
-            video.load();
-            const playPromise = video.play();
-            if (playPromise && playPromise.catch) playPromise.catch(() => {});
-        };
-        if (!slowNetwork) {
-            const kickoff = () => {
-                if ('requestIdleCallback' in window) requestIdleCallback(startVideoLoad, { timeout: 3000 });
-                else setTimeout(startVideoLoad, 1500);
-            };
-            if (document.readyState === 'complete') kickoff();
-            else window.addEventListener('load', kickoff, { once: true });
-        }
-    } else {
-        const heroVideo = el('hero-video');
-        if (heroVideo) {
-            heroVideo.pause?.();
-            heroVideo.style.display = 'none';
-        }
-        const heroSource = el('hero-video-src');
-        if (heroSource) heroSource.removeAttribute('src');
-        if (heroSection) heroSection.classList.add('no-video');
-    }
+    if (heroSection) heroSection.classList.remove('no-video');
     el('hero-eyebrow').textContent = h.eyebrow || '';
     const titleLine1 = h.title_line1 || (currentLang === 'en' ? 'Stay at' : 'Hospédate en');
     const titleEm = h.title_em || propName;
