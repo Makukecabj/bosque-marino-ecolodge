@@ -92,6 +92,10 @@ const I18N = {
         md_next: "Continuar al pago",
         md_back: "Atrás",
         md_pay: "Pagar (demo)",
+        md_payment: "Pago",
+        md_method_card: "Tarjeta",
+        md_extra_apple: "Continuar con Apple Pay (demo).",
+        md_extra_payphone: "Continuar con Payphone (demo).",
         md_close: "Cerrar",
         md_first: "Nombre",
         md_last: "Apellido",
@@ -215,6 +219,10 @@ const I18N = {
         md_next: "Continue to payment",
         md_back: "Back",
         md_pay: "Pay (demo)",
+        md_payment: "Payment",
+        md_method_card: "Card",
+        md_extra_apple: "Continue with Apple Pay (demo).",
+        md_extra_payphone: "Continue with Payphone (demo).",
         md_close: "Close",
         md_first: "First name",
         md_last: "Last name",
@@ -1290,7 +1298,7 @@ function populateModalSummary() {
     <div><strong>${escapeHtml(propName)}</strong></div>
     <div>${escapeHtml(roomName)}</div>
     <div>${escapeHtml(bookingState.checkin || '')} → ${escapeHtml(bookingState.checkout || '')}</div>
-    <div>${escapeHtml(guestCount)} ${t('bk_guest_many')}</div>
+    <div>${escapeHtml(guestCount)} ${escapeHtml(guestCount === '1' ? t('bk_guest_one') : t('bk_guest_many'))}</div>
   `;
   if (room) bookingState.roomName = room.name;
   el('md-success-ref') && (el('md-success-ref').textContent = '');
@@ -1390,6 +1398,12 @@ function refreshLabelsStep1() {
   el('md-label-cardholder').textContent = t('md_cardholder');
   el('md-back-2').textContent = t('md_back');
   el('md-pay').textContent = t('md_pay');
+  const methodCardBtn = document.querySelector('.payment-method[data-method="card"]');
+  if (methodCardBtn) methodCardBtn.textContent = t('md_method_card');
+  const expiryInput = el('md-expiry');
+  if (expiryInput) expiryInput.placeholder = currentLang === 'en' ? 'MM/YY' : 'MM/AA';
+  const paymentExtraText = el('payment-extra-text');
+  // keep last selection text if visible handled on click; no-op here
   el('md-success-title').textContent = t('md_success_title');
   el('md-success-note').textContent = t('md_success_note');
   el('md-success-whatsapp').textContent = t('md_success_wa');
@@ -1496,7 +1510,7 @@ function finishBooking() {
     <div><b>${escapeHtml(t('md_email'))}</b><span>${escapeHtml(g.email || '')}</span></div>
     <div><b>${escapeHtml(t('md_phone'))}</b><span>${escapeHtml(fullPhone)}</span></div>
     <div><b>${escapeHtml(t('md_doctype'))}</b><span>${escapeHtml(g.docType === 'cedula' ? t('md_cedula') : t('md_passport'))} ${escapeHtml(g.docNum || '')}</span></div>
-    <div><b>Pago</b><span>${escapeHtml(bookingState.method)}${bookingState.cardLast4 ? ' •••• ' + bookingState.cardLast4 : ''}</span></div>
+    <div><b>${escapeHtml(t('md_payment'))}</b><span>${escapeHtml(bookingState.method)}${bookingState.cardLast4 ? ' •••• ' + bookingState.cardLast4 : ''}</span></div>
   `;
   const summaryEl = el('md-success-summary');
   if (summaryEl) summaryEl.innerHTML = summaryHtml;
@@ -1546,7 +1560,7 @@ function initBookingModal() {
         if (extra) extra.hidden = true;
       } else {
         el('card-form').hidden = true;
-        if (extra) { extra.hidden = false; if (txt) txt.textContent = method === 'applepay' ? 'Continuar con Apple Pay (demo).' : 'Continuar con Payphone (demo).'; }
+        if (extra) { extra.hidden = false; if (txt) txt.textContent = method === 'applepay' ? t('md_extra_apple') : t('md_extra_payphone'); }
       }
     });
   });
